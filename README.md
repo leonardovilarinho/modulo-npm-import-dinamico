@@ -1,24 +1,22 @@
-# module2
+# Erro de import dinãmico em modulo
 
-## Project setup
-```
-yarn install
-```
+No main.js tem dois tipos de import do modulo: 
 
-### Compiles and hot-reloads for development
 ```
-yarn serve
-```
+// importando modulo localmente
+// import MyModule from './module'
 
-### Compiles and minifies for production
-```
-yarn build
+// importando modulo compilado
+import MyModule from '../module/mymodule.common'
 ```
 
-### Lints and fixes files
+Na primeira maneira funciona normalmente, porém estou importando manualmente, no segundo quando importo da compilação é dado um erro de chunk.
+
+Em `src/module/index.js` o import dinamico é feito para pegar o layout informado pelo parâmetro do modulo:
 ```
-yarn lint
+// import dinamico
+const LayoutModule = () => import (`./layouts/${library.layout}`)
+const Layout = (await LayoutModule()).default
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Em um teste com o código completo, memso trocando pelo import estático tinha dado um erro **ReferenceError: require is not defined**. Porém parece que esse erro se foi quando simplifiquei o código, porém a importação sem chunk deixa o módulo bem pesado.
