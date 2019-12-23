@@ -1,0 +1,10 @@
+{
+  "version": "1.3.10",
+  "title": " | Loja X",
+  "layout": "first",
+  "gtm": "none",
+  "style": {
+    "primary": "#ff4b39",
+    "secundary": "#1abc9c"
+  }
+}
